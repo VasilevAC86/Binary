@@ -1,28 +1,28 @@
-# include <iostream>
+п»ї# include <iostream>
 #include<string>
 
 #define chui(sym) (unsigned int)(sym)
 
 std::string tobinary(unsigned int num) {
 	std::string result;
-	result.reserve(32); // Резервирование памяти под 32 элемента массива char в строке
+	result.reserve(32); // Р РµР·РµСЂРІРёСЂРѕРІР°РЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ 32 СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР° char РІ СЃС‚СЂРѕРєРµ
 	while (num > 1) {
 		result += std::to_string(num % 2);
 		num /= 2;
 	}	
 	result += num == 0 ? '0' : '1';
-	std::reverse(result.begin(),result.end()); // Ф., принимающая указатели на начало и конец стрки и отражающая \
-	содержимое строки
+	std::reverse(result.begin(),result.end()); // Р¤СѓРЅРєС†РёСЏ, РїСЂРёРЅРёРјР°СЋС‰Р°СЏ СѓРєР°Р·Р°С‚РµР»Рё РЅР° РЅР°С‡Р°Р»Рѕ Рё РєРѕРЅРµС† СЃС‚СЂРєРё Рё РѕС‚СЂР°Р¶Р°СЋС‰Р°СЏ \
+	СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚СЂРѕРєРё
 	return result;
 }
 
 bool bit_at_index(unsigned int num, int index) {
-	// Сложный вариант решения
+	// РЎР»РѕР¶РЅС‹Р№ РІР°СЂРёР°РЅС‚ СЂРµС€РµРЅРёСЏ
 	/*unsigned int tmp1 = 1 << index;
 	unsigned int tmp2 = num & tmp1;
 	tmp2 >>= index;	
 	return tmp2;*/
-	// Простой вариан решения
+	// РџСЂРѕСЃС‚РѕР№ РІР°СЂРёР°РЅ СЂРµС€РµРЅРёСЏ
 	return (1 << index) & num;
 }
 
@@ -30,7 +30,7 @@ int main() {
 	setlocale(LC_ALL, "Russian");
 	int n;
 
-	// Битовые операции
+	// Р‘РёС‚РѕРІС‹Рµ РѕРїРµСЂР°С†РёРё
 	char sym1 = 14;
 	std::cout << (sym1 << 1) << std::endl;
 	char sym2 = 44;
@@ -43,23 +43,23 @@ int main() {
 
 	unsigned char sym4 = 154; // 10011010
 	unsigned char sym5 = 171; // 10101011
-	std::cout << chui(sym4 & sym5) << std::endl; // 10001010 Результат битового И
-	std::cout << chui(sym4 | sym5) << std::endl; // 10111011 Результат битового ИЛИ
-	// Результат исключающего ИЛИ ^:
+	std::cout << chui(sym4 & sym5) << std::endl; // 10001010 Р РµР·СѓР»СЊС‚Р°С‚ Р±РёС‚РѕРІРѕРіРѕ Р
+	std::cout << chui(sym4 | sym5) << std::endl; // 10111011 Р РµР·СѓР»СЊС‚Р°С‚ Р±РёС‚РѕРІРѕРіРѕ РР›Р
+	// Р РµР·СѓР»СЊС‚Р°С‚ РёСЃРєР»СЋС‡Р°СЋС‰РµРіРѕ РР›Р ^:
 	std::cout << chui(sym4 ^ sym5) << std::endl; // 00110001
 
-	// Задача 1. DEC в BIN
-	std::cout << "Задача 1.\nВведите число -> ";
+	// Р—Р°РґР°С‡Р° 1. DEC РІ BIN
+	std::cout << "Р—Р°РґР°С‡Р° 1.\nР’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ -> ";
 	std::cin >> n;
 	std::cout << n << " DEC = " << tobinary(n) << " BIN\n\n";
 
-	// Задача 2. Бит в позиции
-	std::cout << "Задача 2.\nВведите число -> ";
+	// Р—Р°РґР°С‡Р° 2. Р‘РёС‚ РІ РїРѕР·РёС†РёРё
+	std::cout << "Р—Р°РґР°С‡Р° 2.\nР’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ -> ";
 	std::cin >> n;
 	int index;
-	std::cout << "Введите индекс бита -> ";
+	std::cout << "Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ Р±РёС‚Р° -> ";
 	std::cin >> index;
-	std::cout << "Бит в позиции: " << bit_at_index(n, index) << "\n";
+	std::cout << "Р‘РёС‚ РІ РїРѕР·РёС†РёРё: " << bit_at_index(n, index) << "\n";
 
 	return 0;
 }
